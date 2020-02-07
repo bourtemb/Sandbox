@@ -8,11 +8,11 @@ jobs:
     name: Greeting
     # This job runs on Linux
     runs-on: ubuntu-latest
-	# Docker Hub image that `container-job` executes in
-	container: node:10.18-jessie
+    # Docker Hub image that `container-job` executes in
+    container: node:10.18-jessie
 
     steps:
-	  # This step check out a copy of your repository
+      # This step check out a copy of your repository
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Hello world
