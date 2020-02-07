@@ -1,4 +1,4 @@
-name: Greet Everyone
+name: 
 # This workflow is triggered on pushes to the repository.
 on: [push]
 
@@ -30,5 +30,7 @@ jobs:
         run: |
           conda info
           conda list
+          ls -l $GITHUB_WORKSPACE
+          conda install conda-build
           conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
 
