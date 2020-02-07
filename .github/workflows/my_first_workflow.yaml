@@ -22,4 +22,4 @@ jobs:
       - name: Display README
         run: cat $GITHUB_WORKSPACE/README.md
       - name: Display lsb_release
-        run: cat /etc/lsb_release
+        run: lsb_release -a
