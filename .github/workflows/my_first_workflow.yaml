@@ -9,7 +9,8 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: node:10.18-jessie
+    container: 
+      image: debian:stretch-backports
 
     steps:
       # This step check out a copy of your repository
