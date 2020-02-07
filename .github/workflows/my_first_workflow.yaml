@@ -7,7 +7,7 @@ jobs:
     # Job name is Greeting
     name: Greeting
     # This job runs on Linux
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
 #    container: 
 #      image: condaforge/linux-anvil
@@ -16,19 +16,19 @@ jobs:
       # This step check out a copy of your repository
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Hello world
-        run: echo 'Hello world!!'
-        id: hello
+      # Display OS release
+      - name: Display os-release
+        run: cat /etc/os-release
       # Setup miniconda
       - name: Setup miniconda
         uses: goanpeca/setup-miniconda@v1
         with:
-          miniconda-version: 'latest'
+          auto-update-conda: true
           activate-environment: foo
       - name: Bash
         shell: bash -l {0}
         run: |
           conda info
           conda list
-      - name: Display os-release
-        run: cat /etc/os-release
+          conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+
