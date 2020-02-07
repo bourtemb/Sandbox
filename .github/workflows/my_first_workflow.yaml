@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
     container: 
-      image: debian:stretch-backports
+      image: condaforge/linux-anvil
 
     steps:
       # This step check out a copy of your repository
