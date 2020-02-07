@@ -22,5 +22,5 @@ jobs:
       # This step display the checked out README.md file
       - name: Display README
         run: cat $GITHUB_WORKSPACE/README.md
-      - name: Display lsb_release
-        run: lsb_release -a
+      - name: Display os-release
+        run: cat /etc/os-release
