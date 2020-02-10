@@ -25,7 +25,7 @@ jobs:
         with:
           auto-update-conda: true
           activate-environment: foo
-      - name: Bash
+      - name: Build tango-idl Conda package
         shell: bash -l {0}
         run: |
           conda info
@@ -33,4 +33,9 @@ jobs:
           ls -l $GITHUB_WORKSPACE
           conda install conda-build
           conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+      - name: Upload Conda Package as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: tango-idl-conda-package
+          path: $GITHUB_WORKSPACE/dist-idl
 
