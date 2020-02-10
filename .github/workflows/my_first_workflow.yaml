@@ -33,6 +33,8 @@ jobs:
           ls -l $GITHUB_WORKSPACE
           conda install conda-build
           conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+          mkdir $GITHUB_WORKSPACE/artifacts
+          cp $GITHUB_WORKSPACE/dist-idl/tangoidl*.bz2 $GITHUB_WORKSPACE/artifacts/
       - name: Upload Conda Package as artifact
         uses: actions/upload-artifact@v1
         with:
