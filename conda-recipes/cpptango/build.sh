@@ -8,4 +8,4 @@ cmake -DCMAKE_BUILD_TYPE=Debug \
       -DIDL_BASE=$PREFIX \
       ..
 
-make -j 2 install
+make -j `nproc` install
