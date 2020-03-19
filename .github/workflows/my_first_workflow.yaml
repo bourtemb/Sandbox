@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    name: tango-idl and cpptango Conda package
+    name: tango-idl and cpptango Conda packages
     # This job runs on Linux
     runs-on: ubuntu-latest
 
@@ -27,6 +27,8 @@ jobs:
           conda info
           conda install conda-build
           conda config --add channels conda-forge
+      - name: install conda-verify
+        run: conda install conda-verify
       - name: Build tango-idl Conda package
         shell: bash -l {0}
         run: |
