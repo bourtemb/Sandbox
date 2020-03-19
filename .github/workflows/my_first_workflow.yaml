@@ -41,6 +41,7 @@ jobs:
           mkdir $GITHUB_WORKSPACE/artifacts
           cp $GITHUB_WORKSPACE/dist-idl/linux-64/tango-idl*.bz2 $GITHUB_WORKSPACE/artifacts/
           cp $GITHUB_WORKSPACE/dist-cpptango/linux-64/cpptango*.bz2 $GITHUB_WORKSPACE/artifacts/
+          ls -l $GITHUB_WORKSPACE/artifacts
       - name: Upload Conda Packages as artifact
         uses: actions/upload-artifact@v1
         with:
