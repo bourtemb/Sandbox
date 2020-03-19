@@ -1,7 +1,7 @@
 {% set version = "5.0.1" %}
 
 package:
-  name: tangoidl
+  name: tango-idl
   version: "{{ version }}"
 
 source:
