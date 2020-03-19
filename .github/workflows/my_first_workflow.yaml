@@ -4,13 +4,9 @@ on: [push]
 
 jobs:
   build:
-    # Job name is Greeting
-    name: tangoidl Conda package
+    name: tango-idl and cpptango Conda package
     # This job runs on Linux
     runs-on: ubuntu-latest
-    # Docker Hub image that `container-job` executes in
-#    container: 
-#      image: condaforge/linux-anvil
 
     steps:
       # This step check out a copy of your repository
@@ -24,20 +20,30 @@ jobs:
         uses: goanpeca/setup-miniconda@v1
         with:
           auto-update-conda: true
-          activate-environment: foo
-      - name: Build tango-idl Conda package
+          activate-environment: conda_pkg_build_env
+      - name: install conda-build
         shell: bash -l {0}
         run: |
           conda info
-          conda list
-          ls -l $GITHUB_WORKSPACE
           conda install conda-build
+          conda config --add channels conda-forge
+      - name: Build tango-idl Conda package
+        shell: bash -l {0}
+        run: |
           conda build $GITHUB_WORKSPACE/conda-recipes/tango-idl --output-folder=$GITHUB_WORKSPACE/dist-idl
+      - name: Build cpptango Conda package
+        shell: bash -l {0}
+        run: |
+          conda build $GITHUB_WORKSPACE/conda-recipes/cpptango --output-folder=$GITHUB_WORKSPACE/dist-cpptango
+      - name: Prepare artifacts
+        shell: bash -l {0}
+        run: |
           mkdir $GITHUB_WORKSPACE/artifacts
-          cp $GITHUB_WORKSPACE/dist-idl/linux-64/tangoidl*.bz2 $GITHUB_WORKSPACE/artifacts/
-      - name: Upload Conda Package as artifact
+          cp $GITHUB_WORKSPACE/dist-idl/linux-64/tango-idl*.bz2 $GITHUB_WORKSPACE/artifacts/
+          cp $GITHUB_WORKSPACE/dist-cpptango/linux-64/cpptango*.bz2 $GITHUB_WORKSPACE/artifacts/
+      - name: Upload Conda Packages as artifact
         uses: actions/upload-artifact@v1
         with:
-          name: tango-idl-conda-package
+          name: tango-idl-and-cpptango-conda-packages
           path: artifacts
 
